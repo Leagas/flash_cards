@@ -1,0 +1,20 @@
+version: '3.5'
+services:
+  db:
+    container_name: card_db
+    image: mysql:5.7
+    restart: always
+    networks:
+      - network-default
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3310:3306'
+    volumes:
+      - my-db:/var/lib/mysql
+volumes:
+  my-db:
+
+networks:
+  network-default:
+   name: flash_cards

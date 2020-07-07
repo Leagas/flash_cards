@@ -11,6 +11,6 @@
 		"lib": ["es2017"],
 		"esModuleInterop": true,
     },
-    "include": ["src/**/*.ts"],
+    "include": ["api/**/*.ts", "api/src/**/*.ts", "db/*.ts"],
     "exclude": ["src/**/*.spec.ts"]
 }
