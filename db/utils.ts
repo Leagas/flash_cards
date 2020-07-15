@@ -11,7 +11,7 @@ function wait(waitTime: number) {
 }
 
 export async function pingUntilReady(connection: Connection, limit: number = 25) {
-	Log.warn("Waiting for database ...")
+	Log.warn("Waiting for database ...\n")
 	for (let attempts = 1; attempts <= limit; attempts++) {
 		const waitTime = 500 * attempts
 		try {
@@ -39,12 +39,12 @@ export function disconnect(connection: Connection) {
 		if (err) {
 			throw err
 		}
-		Log.info("Disconnecting ...")
+		Log.info("Disconnecting ...\n")
 	})
 }
 
 export async function connect(db: ConnectionConfig): Promise<Connection> {
-	Log.info("Creating database connection ...")
+	Log.info("Creating database connection ...\n")
 
 	return mysql.createConnection(db)
 }

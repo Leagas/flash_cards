@@ -4,7 +4,7 @@ import { exec } from "child_process";
 import { Log } from '../lib/logger';
 
 process.on("SIGINT", () => {
-	Log.info("\nShutting down...")
+	Log.info("\nShutting down...\n")
 
 	exec("npm run db:stop", () => {
 		process.exit();
@@ -17,7 +17,7 @@ function main(port: number): void {
 	initRoutes(app);
 
 	app.listen(port, () => {
-		Log.ok(`Listening on ${port}`)
+		Log.ok(`\nListening on ${port}\n`)
 	})
 }
 

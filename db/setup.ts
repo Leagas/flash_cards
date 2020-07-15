@@ -8,7 +8,7 @@ async function setup(connection: Connection): Promise<void> {
 
 	await pingUntilReady(connection)
 
-	Log.info("Creating database schema ...")
+	Log.info("Creating database schema ...\n")
 	await query(connection, schema)
 }
 
@@ -16,9 +16,9 @@ async function main() {
 	try {
 		const connection = await connect(db)
 		await setup(connection)
-		Log.ok("Setup complete")
+		Log.ok("Setup complete\n")
 	} catch (err) {
-		Log.error(err)
+		Log.error(`${err}\n`)
 	}
 }
 
