@@ -1,7 +1,8 @@
 import express from "express"
-import { initRoutes } from './src/routes/routes';
+import { init_routes } from './src/routes/routes';
 import { exec } from "child_process";
 import { Log } from '../lib/logger';
+import { init_db } from '../db';
 
 process.on("SIGINT", () => {
 	Log.info("\nShutting down...\n")
@@ -14,7 +15,8 @@ process.on("SIGINT", () => {
 function main(port: number): void {
 	const app = express();
 
-	initRoutes(app);
+	init_db();
+	init_routes(app);
 
 	app.listen(port, () => {
 		Log.ok(`\nListening on ${port}\n`)

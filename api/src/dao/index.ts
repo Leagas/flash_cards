@@ -1,1 +1,1 @@
-export * as card from "./card"
+export * as card_dao from "./card"

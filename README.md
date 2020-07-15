@@ -6,7 +6,12 @@ Inspired by https://github.com/jwasham/coding-interview-university
 
 # todo
 
-<!--
-Create a function to await the docker container ready status before running database setup scripts. -->
+Design init_database on startup functionality
+	- 	create db/index.ts
+	-	create connection pool
+	- 	create db generic ops
 
-Add generic logging functions
+Design first api operations:
+	- dao
+	- model
+	- controller
