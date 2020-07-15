@@ -2,29 +2,61 @@ import mysql from "mysql"
 import { Connection, ConnectionConfig } from "mysql"
 import * as fs from "fs"
 import path from "path"
+import { Log } from '../lib/logger'
+
+function wait(waitTime: number) {
+	return new Promise((resolve) => {
+		setTimeout(() => resolve(), waitTime)
+	})
+}
+
+export async function pingUntilReady(connection: Connection, limit: number = 25) {
+	Log.warn("Waiting for database ...")
+	for (let attempts = 1; attempts <= limit; attempts++) {
+		const waitTime = 500 * attempts
+		try {
+			await new Promise((resolve, reject) => {
+				connection.ping((err) => {
+					if (err) {
+						return reject(err)
+					}
+					process.stdout.write("\n")
+					return resolve()
+				})
+			})
+			return true
+		} catch (e) {
+			Log.warn(".")
+			await wait(waitTime)
+		}
+	}
+
+	return false
+}
 
 export function disconnect(connection: Connection) {
 	connection.end((err) => {
 		if (err) {
 			throw err
 		}
-		console.log("Disconnecting...")
+		Log.info("Disconnecting ...")
 	})
 }
 
 export async function connect(db: ConnectionConfig): Promise<Connection> {
-	console.log("Creating database connection...")
+	Log.info("Creating database connection ...")
 
 	return mysql.createConnection(db)
 }
 
 export async function query(connection: Connection, schema: string) {
-	connection.query(schema, (error, results, fields) => {
+	connection.query(schema, (error) => {
 		if (error) {
 			throw error
 		}
 	})
-	connection.end()
+
+	disconnect(connection)
 }
 
 export async function readFile(dir: string, file: string): Promise<string> {

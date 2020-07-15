@@ -1,11 +1,12 @@
 import express from "express"
 import { initRoutes } from './src/routes/routes';
 import { exec } from "child_process";
+import { Log } from '../lib/logger';
 
 process.on("SIGINT", () => {
-	console.log("\nShutting down...")
+	Log.info("\nShutting down...")
 
-	exec("docker-compose down", () => {
+	exec("npm run db:stop", () => {
 		process.exit();
 	})
 })
@@ -16,7 +17,7 @@ function main(port: number): void {
 	initRoutes(app);
 
 	app.listen(port, () => {
-		console.log(`Listening on ${port}`)
+		Log.ok(`Listening on ${port}`)
 	})
 }
 

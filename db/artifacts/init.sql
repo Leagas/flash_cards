@@ -1,4 +1,10 @@
-CREATE TABLE IF NOT EXISTS Card (
+DROP DATABASE IF EXISTS card_db;
+
+CREATE DATABASE card_db;
+
+USE card_db;
+
+CREATE TABLE Card (
   id int(11) NOT NULL AUTO_INCREMENT,
   topic VARCHAR(255),
   question VARCHAR(255),

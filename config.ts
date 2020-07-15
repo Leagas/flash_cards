@@ -7,7 +7,6 @@ export const db: ConnectionConfig = {
 	user: "root",
 	password: "root",
 	port: 3310,
-	database: "db"
 }
 
 export const ARTIFACTS_DIR = path.join(__dirname, "./db/artifacts")
