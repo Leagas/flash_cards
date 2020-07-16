@@ -3,6 +3,7 @@ import { init_routes } from './src/routes/routes';
 import { exec } from "child_process";
 import { Log } from '../lib/logger';
 import { init_db } from '../db';
+import { init_middleware } from './src/middleware';
 
 process.on("SIGINT", () => {
 	Log.info("\nShutting down...\n")
@@ -12,10 +13,11 @@ process.on("SIGINT", () => {
 	})
 })
 
-function main(port: number): void {
+async function main(port: number): Promise<void> {
 	const app = express();
 
-	init_db();
+	await init_db();
+	init_middleware(app);
 	init_routes(app);
 
 	app.listen(port, () => {

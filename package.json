@@ -8,10 +8,10 @@
     "db:start": "docker-compose start db",
     "db:remove": "docker-compose down",
     "db:create": "docker-compose up -d",
-		"db:setup": "node dist/db/setup.js",
-		"setup": "npm run db:remove && npm run db:create && npm run db:setup",
-		"build": "npm run clean && tsc --build tsconfig.json ",
-		"clean": "rm -rf dist",
+    "db:setup": "node dist/db/setup.js",
+    "setup": "npm run db:remove && npm run db:create && npm run db:setup",
+    "build": "npm run clean && tsc --build tsconfig.json ",
+    "clean": "rm -rf dist",
     "build:watch": "npm run clean && tsc --build tsconfig.json --watch",
     "start": "npm run db:start && node dist/api/index.js"
   },
@@ -20,7 +20,7 @@
   "dependencies": {
     "@types/express": "^4.17.6",
     "@types/mysql": "^2.15.14",
-    "express": "^4.17.1",
+    "express": "4.17.1",
     "mysql": "^2.18.1",
     "prettier": "^2.0.5",
     "tslib": "^2.0.0"

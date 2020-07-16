@@ -1,9 +1,11 @@
 import { Card } from '../models/card'
+import { database } from '../../../db'
 
-export async function add(card: Card): Promise<Card> {
-	const sql = `INSERT INTO Card (topic, question, answer) VALUES (${card.topic}, ${card.question}, ${card.answer})`
+export async function add(card: Card): Promise<void> {
+	const query = `INSERT INTO Card (topic, question, answer) VALUES (?, ?, ?)`
+	const params = [card.topic, card.question, card.answer]
 
-	return card
+	await database.query(query, params);
 }
 
 export function remove() {}
