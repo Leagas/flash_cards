@@ -22,10 +22,10 @@ function query<Result = any>(schema: string, params: string[], pool: Pool): Prom
 			conn.query({
 				sql: schema,
 				values: params
-			}, (err, rows: Result) => {
+			}, (err, results: Result) => {
 				conn.release();
 				if (err) reject(err)
-				resolve(rows)
+				resolve(results)
 			})
 		})
 	})

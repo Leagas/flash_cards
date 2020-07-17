@@ -6,12 +6,12 @@ Inspired by https://github.com/jwasham/coding-interview-university
 
 # todo
 
-Design init_database on startup functionality
-	- 	create db/index.ts
-	-	create connection pool
-	- 	create db generic ops
+Expand api/dao ops to include:
+	- fetch
+	- update
+	- remove
 
-Design first api operations:
-	- dao
-	- model
-	- controller
+Create basic app template and server route
+Extend request interfaces at route for "self-documenting" code
+
+Think of some sort of random sort prio. e.g SET last selected
