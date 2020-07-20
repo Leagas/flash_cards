@@ -9,6 +9,7 @@ CREATE TABLE Card (
   topic VARCHAR(255),
   question VARCHAR(255),
   answer VARCHAR(255),
+	known int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 );
 
