@@ -28,4 +28,17 @@ export function init_routes(app: Express): void {
 			return res.send(null).status(400)
 		}
 	)
+
+	app.post(
+		"/card/update",
+		async (req: Request, res: Response): Promise<Response<any>> => {
+			const result = await card_controller.update(req.body)
+
+			if (result) {
+				return res.sendStatus(200)
+			}
+
+			return res.sendStatus(400)
+		}
+	)
 }

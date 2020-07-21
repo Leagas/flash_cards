@@ -15,5 +15,11 @@ export async function fetch(topic: string[]): Promise<Card[] | void> {
 	return await database.query(query, params)
 }
 
-export function update() {}
+export async function update(card: Card): Promise<Card[] | void> {
+	const query = `UPDATE Card SET topic=?, question=?, answer=?, known=? WHERE id=?`
+	const params = [card.topic, card.question, card.answer, card.known, card.id]
+
+	return await database.query(query, params)
+}
+
 export function remove() {}

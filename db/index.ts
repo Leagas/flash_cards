@@ -4,7 +4,7 @@ import { db } from "../config"
 
 type Database = {
 	connection_pool: Pool;
-	query: (schema: string, params: string[]) => void
+	query: (schema: string, params: any[]) => void
 }
 
 function create_pool(db: ConnectionConfig): Pool {

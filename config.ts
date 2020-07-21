@@ -9,4 +9,5 @@ export const db: ConnectionConfig = {
 	port: 3310,
 }
 
-export const ARTIFACTS_DIR = path.join(__dirname, "./db/artifacts")
+// path relative from dist
+export const ARTIFACTS_DIR = path.join(__dirname, "../db/artifacts")

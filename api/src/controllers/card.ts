@@ -5,7 +5,7 @@ import { Log } from "../../../lib/logger"
 
 export async function create(card: Card): Promise<boolean> {
 	try {
-		await await card_dao.create(card)
+		await card_dao.create(card)
 
 		return true
 	} catch (err) {
@@ -20,5 +20,17 @@ export async function fetch(topic: string[]): Promise<Card[] | void> {
 		return await card_dao.fetch(topic)
 	} catch (err) {
 		Log.error(`\n${err}\n`)
+	}
+}
+
+export async function update(card: Card): Promise<boolean> {
+	try {
+		await card_dao.update(card)
+
+		return true
+	} catch (err) {
+		Log.error(`\n${err}\n`)
+
+		return false
 	}
 }
