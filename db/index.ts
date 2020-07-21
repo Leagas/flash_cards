@@ -1,10 +1,10 @@
-import mysql, { Pool, Query, createConnection } from "mysql"
+import mysql, { Pool } from "mysql"
 import { ConnectionConfig } from 'mysql';
 import { db } from "../config"
 
 type Database = {
 	connection_pool: Pool;
-	query: (schema: string, params: any[]) => void
+	query: <Result = any[]>(schema: string, params: any[]) => Promise<Result>
 }
 
 function create_pool(db: ConnectionConfig): Pool {
@@ -15,7 +15,7 @@ function create_pool(db: ConnectionConfig): Pool {
 	});
 }
 
-function query<Result = any>(schema: string, params: string[], pool: Pool): Promise<Result> {
+function query<Result = any[]>(schema: string, params: string[], pool: Pool): Promise<Result> {
 	return new Promise((resolve, reject) => {
 		pool.getConnection((err, conn) => {
 			if (err) reject(err)

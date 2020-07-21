@@ -34,3 +34,15 @@ export async function update(card: Card): Promise<boolean> {
 		return false
 	}
 }
+
+export async function remove(id: number[]): Promise<boolean> {
+	try {
+		await card_dao.remove(id)
+
+		return true
+	} catch (err) {
+		Log.error(`\n${err}\n`)
+
+		return false
+	}
+}

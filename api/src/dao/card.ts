@@ -1,11 +1,11 @@
 import { Card } from "../models/card"
 import { database } from "../../../db"
 
-export async function create(card: Card): Promise<void> {
+export async function create(card: Card): Promise<any> {
 	const query = `INSERT INTO Card (topic, question, answer) VALUES (?, ?, ?)`
 	const params = [card.topic, card.question, card.answer]
 
-	await database.query(query, params)
+	return await database.query(query, params)
 }
 
 export async function fetch(topic: string[]): Promise<Card[] | void> {
@@ -15,11 +15,16 @@ export async function fetch(topic: string[]): Promise<Card[] | void> {
 	return await database.query(query, params)
 }
 
-export async function update(card: Card): Promise<Card[] | void> {
+export async function update(card: Card): Promise<any> {
 	const query = `UPDATE Card SET topic=?, question=?, answer=?, known=? WHERE id=?`
 	const params = [card.topic, card.question, card.answer, card.known, card.id]
 
 	return await database.query(query, params)
 }
 
-export function remove() {}
+export async function remove(id: number[]): Promise<void> {
+	const query = `DELETE FROM Card WHERE id IN (?)`
+	const params = [id]
+
+	return await database.query(query, params)
+}

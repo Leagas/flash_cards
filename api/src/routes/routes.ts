@@ -1,11 +1,12 @@
-import { Express, Request, Response } from "express"
+import { Express, Response } from "express"
 
 import { card_controller } from "../controllers"
+import { CardRequest, Card } from '../models/card'
 
 export function init_routes(app: Express): void {
 	app.post(
 		"/card/create",
-		async (req: Request, res: Response): Promise<Response<any>> => {
+		async (req: CardRequest<Card>, res: Response): Promise<Response<any>> => {
 			const result = await card_controller.create(req.body)
 
 			if (result) {
@@ -18,7 +19,7 @@ export function init_routes(app: Express): void {
 
 	app.post(
 		"/card/fetch",
-		async (req: Request, res: Response): Promise<Response<any>> => {
+		async (req: CardRequest<string[]>, res: Response): Promise<Response<Card>> => {
 			const result = await card_controller.fetch(req.body)
 
 			if (result) {
@@ -31,8 +32,21 @@ export function init_routes(app: Express): void {
 
 	app.post(
 		"/card/update",
-		async (req: Request, res: Response): Promise<Response<any>> => {
+		async (req: CardRequest<Card>, res: Response): Promise<Response<any>> => {
 			const result = await card_controller.update(req.body)
+
+			if (result) {
+				return res.sendStatus(200)
+			}
+
+			return res.sendStatus(400)
+		}
+	)
+
+	app.post(
+		"/card/remove",
+		async (req: CardRequest<number[]>, res: Response): Promise<Response<any>> => {
+			const result = await card_controller.remove(req.body)
 
 			if (result) {
 				return res.sendStatus(200)
