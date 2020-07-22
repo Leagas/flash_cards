@@ -3,7 +3,7 @@
         "forceConsistentCasingInFileNames": true,
         "target": "es2017",
         "module": "commonjs",
-        "outDir": "dist",
+        "outDir": "../dist/app",
         "strict": true,
         "sourceMap": true,
         "declaration": true,
@@ -12,6 +12,6 @@
 		"esModuleInterop": true,
 		"jsx": "react"
     },
-    "include": ["api/**/*.ts", "db/*.ts", "./lib"],
-    "exclude": ["src/**/*.spec.ts"]
+    "include": ["./**/*.tsx", "./**/*.ts"],
+    "exclude": ["./**/*.spec.ts"]
 }
