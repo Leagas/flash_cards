@@ -5,7 +5,7 @@ const path = require("path")
 module.exports = {
 	mode: process.NODE_ENV == "dev" ? "development" : "production",
 	entry: {
-		app: "./app/index.tsx"
+		app: "./app/index.tsx",
 	},
 	output: {
 		path: path.resolve(__dirname, "./dist/app"),
@@ -26,8 +26,8 @@ module.exports = {
 					{
 						loader: "ts-loader",
 						options: {
-							configFile: path.join(__dirname, "app/tsconfig.json")
-						}
+							configFile: path.join(__dirname, "app/tsconfig.json"),
+						},
 					},
 				],
 			},

@@ -28,14 +28,9 @@
 				"url": {
 					"raw": "http://localhost:3000/card/create",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
-					"path": [
-						"card",
-						"create"
-					]
+					"path": ["card", "create"]
 				},
 				"description": "Add a flash card toi the database"
 			},
@@ -58,14 +53,9 @@
 				"url": {
 					"raw": "http://localhost:3000/card/fetch",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
-					"path": [
-						"card",
-						"fetch"
-					]
+					"path": ["card", "fetch"]
 				}
 			},
 			"response": []
@@ -87,14 +77,9 @@
 				"url": {
 					"raw": "http://localhost:3000/card/update",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "3000",
-					"path": [
-						"card",
-						"update"
-					]
+					"path": ["card", "update"]
 				}
 			},
 			"response": []

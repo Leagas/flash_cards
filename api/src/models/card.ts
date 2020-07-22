@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { Request } from "express"
 
 export type Card = {
 	id?: number
@@ -9,5 +9,5 @@ export type Card = {
 }
 
 export interface CardRequest<Body> extends Request {
-	body: Body;
+	body: Body
 }

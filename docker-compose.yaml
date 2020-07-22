@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   db:
     container_name: card_db
@@ -7,9 +7,9 @@ services:
     networks:
       - network-default
     environment:
-      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: "root"
     ports:
-      - '3310:3306'
+      - "3310:3306"
     volumes:
       - my-db:/var/lib/mysql
 volumes:
@@ -17,4 +17,4 @@ volumes:
 
 networks:
   network-default:
-   name: flash_cards
+    name: flash_cards

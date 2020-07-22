@@ -1,17 +1,17 @@
 {
-    "compilerOptions": {
-        "forceConsistentCasingInFileNames": true,
-        "target": "es2017",
-        "module": "commonjs",
-        "outDir": "../dist/app",
-        "strict": true,
-        "sourceMap": true,
-        "declaration": true,
-        "importHelpers": true,
+	"compilerOptions": {
+		"forceConsistentCasingInFileNames": true,
+		"target": "es2017",
+		"module": "commonjs",
+		"outDir": "../dist/app",
+		"strict": true,
+		"sourceMap": true,
+		"declaration": true,
+		"importHelpers": true,
 		"lib": ["es2017", "dom"],
 		"esModuleInterop": true,
 		"jsx": "react"
-    },
-    "include": ["./**/*.tsx", "./**/*.ts"],
-    "exclude": ["./**/*.spec.ts"]
+	},
+	"include": ["./**/*.tsx", "./**/*.ts"],
+	"exclude": ["./**/*.spec.ts"]
 }

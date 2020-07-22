@@ -1,7 +1,7 @@
 import { Express, Response } from "express"
 
 import { card_controller } from "../controllers"
-import { CardRequest, Card } from '../models/card'
+import { CardRequest, Card } from "../models/card"
 
 export function init_routes(app: Express): void {
 	app.post(
