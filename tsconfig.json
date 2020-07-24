@@ -1,7 +1,8 @@
 {
 	"compilerOptions": {
 		"forceConsistentCasingInFileNames": true,
-		"target": "es2017",
+		"removeComments": true,
+		"target": "es6",
 		"module": "commonjs",
 		"outDir": "dist",
 		"strict": true,
@@ -12,6 +13,6 @@
 		"esModuleInterop": true,
 		"jsx": "react"
 	},
-	"include": ["api/**/*.ts", "db/*.ts", "./lib"],
+	"include": ["api/**/*", "db/*", "./lib"],
 	"exclude": ["src/**/*.spec.ts"]
 }

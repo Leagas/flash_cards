@@ -4,6 +4,7 @@ const path = require("path")
 
 module.exports = {
 	mode: process.NODE_ENV == "dev" ? "development" : "production",
+	target: "web",
 	entry: {
 		app: "./app/index.tsx",
 	},
@@ -13,13 +14,14 @@ module.exports = {
 	},
 	devtool: "source-map",
 	resolve: {
-		extensions: [".ts", ".tsx"],
+		modules: [path.resolve(__dirname), "node_modules"],
+		extensions: ["js", "jsx", ".ts", ".tsx"],
 	},
 
 	module: {
 		rules: [
 			{
-				test: /\.ts(x?)$/,
+				test: /\.(ts|js)x?$/,
 				exclude: /node_modules/,
 				include: path.resolve(__dirname, "app"),
 				use: [
@@ -30,6 +32,10 @@ module.exports = {
 						},
 					},
 				],
+			},
+			{
+				test: /\.css$/,
+				use: ["style-loader", "css-loader"],
 			},
 			{
 				enforce: "pre",

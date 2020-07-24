@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-const Main = () => <div></div>
+import { Container } from "./src/container"
 
-ReactDOM.render(<Main />, document.getElementById("root"))
+ReactDOM.render(<Container />, document.getElementById("root"))

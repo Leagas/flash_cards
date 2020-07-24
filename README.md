@@ -6,6 +6,6 @@ Inspired by https://github.com/jwasham/coding-interview-university
 
 # todo
 
-Create basic app template and server route (render server side)
+Implement app routing for admin and main app.
 
 Think of some sort of random sort prio. e.g SET last selected

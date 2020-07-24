@@ -1,17 +1,22 @@
 {
 	"compilerOptions": {
+		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
-		"target": "es2017",
+		"allowSyntheticDefaultImports": true,
+		"removeComments": true,
+		"target": "es6",
 		"module": "commonjs",
 		"outDir": "../dist/app",
 		"strict": true,
 		"sourceMap": true,
 		"declaration": true,
 		"importHelpers": true,
-		"lib": ["es2017", "dom"],
+		"lib": ["es2018", "dom"],
 		"esModuleInterop": true,
-		"jsx": "react"
+		"jsx": "react",
+		"types": ["node", "webpack"],
+		"noErrorTruncation": true
 	},
-	"include": ["./**/*.tsx", "./**/*.ts"],
+	"include": ["./**/*"],
 	"exclude": ["./**/*.spec.ts"]
 }
