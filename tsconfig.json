@@ -1,17 +1,18 @@
 {
 	"compilerOptions": {
-		"forceConsistentCasingInFileNames": true,
-		"removeComments": true,
-		"target": "es6",
+		"jsx": "react",
+		"lib": ["es5", "es6", "es7", "es2017", "dom"],
 		"module": "commonjs",
+		"target": "es6",
 		"outDir": "dist",
 		"strict": true,
 		"sourceMap": true,
 		"declaration": true,
 		"importHelpers": true,
-		"lib": ["es2017", "dom"],
 		"esModuleInterop": true,
-		"jsx": "react"
+		"forceConsistentCasingInFileNames": true,
+		"allowSyntheticDefaultImports": true,
+		"removeComments": true,
 	},
 	"include": ["api/**/*", "db/*", "./lib"],
 	"exclude": ["src/**/*.spec.ts"]

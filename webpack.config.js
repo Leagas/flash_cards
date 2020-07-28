@@ -13,25 +13,24 @@ module.exports = {
 		filename: "app.bundle.js",
 	},
 	devtool: "source-map",
-	resolve: {
-		modules: [path.resolve(__dirname), "node_modules"],
-		extensions: ["js", "jsx", ".ts", ".tsx"],
-	},
-
 	module: {
 		rules: [
 			{
 				test: /\.(ts|js)x?$/,
 				exclude: /node_modules/,
+				resolve: {
+					modules: [path.resolve(__dirname), "node_modules"],
+					extensions: [".ts", ".tsx"],
+				},
 				include: path.resolve(__dirname, "app"),
 				use: [
 					{
-						loader: "ts-loader",
+						loader: require.resolve("ts-loader"),
 						options: {
 							configFile: path.join(__dirname, "app/tsconfig.json"),
 						},
 					},
-				],
+				]
 			},
 			{
 				test: /\.css$/,
