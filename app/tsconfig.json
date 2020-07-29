@@ -14,7 +14,7 @@
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
 		"allowSyntheticDefaultImports": true,
-		"removeComments": true,
+		"removeComments": true
 	},
 	"include": ["./**/*"],
 	"exclude": ["./**/*.spec.ts"]

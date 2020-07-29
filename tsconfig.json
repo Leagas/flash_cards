@@ -12,7 +12,7 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"allowSyntheticDefaultImports": true,
-		"removeComments": true,
+		"removeComments": true
 	},
 	"include": ["api/**/*", "db/*", "./lib"],
 	"exclude": ["src/**/*.spec.ts"]

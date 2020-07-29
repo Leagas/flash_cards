@@ -1,6 +1,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const webpack = require("webpack")
 const path = require("path")
+
+const isDevelopment = process.env.NODE_ENV === "dev"
 
 module.exports = {
 	mode: process.NODE_ENV == "dev" ? "development" : "production",
@@ -9,8 +12,9 @@ module.exports = {
 		app: "./app/index.tsx",
 	},
 	output: {
-		path: path.resolve(__dirname, "./dist/app"),
+		path: path.resolve(__dirname, "./dist/public"),
 		filename: "app.bundle.js",
+		publicPath: "/",
 	},
 	devtool: "source-map",
 	module: {
@@ -20,7 +24,7 @@ module.exports = {
 				exclude: /node_modules/,
 				resolve: {
 					modules: [path.resolve(__dirname), "node_modules"],
-					extensions: [".ts", ".tsx"],
+					extensions: [".ts", ".tsx", ".scss"],
 				},
 				include: path.resolve(__dirname, "app"),
 				use: [
@@ -30,11 +34,40 @@ module.exports = {
 							configFile: path.join(__dirname, "app/tsconfig.json"),
 						},
 					},
-				]
+				],
 			},
 			{
-				test: /\.css$/,
-				use: ["style-loader", "css-loader"],
+				test: /\.module\.s(a|c)ss$/,
+				loader: [
+					isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+					{
+						loader: "css-loader",
+						options: {
+							modules: true,
+							sourceMap: isDevelopment,
+						},
+					},
+					{
+						loader: "sass-loader",
+						options: {
+							sourceMap: isDevelopment,
+						},
+					},
+				],
+			},
+			{
+				test: /\.s(a|c)ss$/,
+				exclude: /\.module.(s(a|c)ss)$/,
+				loader: [
+					isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+					"css-loader",
+					{
+						loader: "sass-loader",
+						options: {
+							sourceMap: isDevelopment,
+						},
+					},
+				],
 			},
 			{
 				enforce: "pre",
@@ -43,9 +76,11 @@ module.exports = {
 			},
 		],
 	},
-	externals: {
-		react: "React",
-		"react-dom": "ReactDOM",
-	},
-	plugins: [new HtmlWebpackPlugin({ template: "./app/index.html" })],
+	plugins: [
+		new HtmlWebpackPlugin({ template: "./app/index.html" }),
+		new MiniCssExtractPlugin({
+			filename: "[name].css",
+			chunkFilename: "[id].css",
+		}),
+	],
 }

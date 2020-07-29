@@ -1,4 +1,5 @@
 import { Express, Response } from "express"
+import path from "path"
 
 import { card_controller } from "../controllers"
 import { CardRequest, Card } from "../models/card"
@@ -55,4 +56,8 @@ export function init_routes(app: Express): void {
 			return res.sendStatus(400)
 		}
 	)
+
+	app.get("/*", (req, res) => {
+		res.sendFile(path.join(__dirname, "../../../public/index.html"))
+	})
 }

@@ -1,15 +1,12 @@
-import React from "react"
+import React, { Fragment } from "react"
+
 import { Admin } from "./views/admin/store"
-import { Routes } from './routes'
+import { Routes } from "./routes"
 
 const storeContext = React.createContext({
 	admin: new Admin(),
 })
 
-export const Container = () => (
-	<div>
-		<Routes />
-	</div>
-)
+export const Container = () => <Routes />
 
 export const useStore = () => React.useContext(storeContext)

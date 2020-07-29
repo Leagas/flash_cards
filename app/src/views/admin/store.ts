@@ -1,5 +1,5 @@
 import { observable, action } from "mobx"
-import { Card } from './model'
+import { Card } from "./model"
 
 export class Admin {
 	constructor() {
