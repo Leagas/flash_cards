@@ -6,6 +6,8 @@ Inspired by https://github.com/jwasham/coding-interview-university
 
 # todo
 
-Implement app routing for admin and main app.
+Main menu responsive styling
+View layout containers
+Form/input design
 
 Think of some sort of random sort prio. e.g SET last selected

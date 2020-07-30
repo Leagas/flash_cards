@@ -14,7 +14,8 @@
 		"build:client": "npx webpack --config webpack.config.js --watch",
 		"clean": "rm -rf dist",
 		"build": "npm run clean && npm run build:server && npm run build:client",
-		"start": "npm run db:start && node dist/api/index.js",
+		"start:local": "npm run db:start && node dist/api/index.js",
+		"start": "node dist/api/index.js",
 		"prettier": "prettier --write \"./**/*.{j{s,sx},t{s,sx},json}\""
 	},
 	"author": "",
