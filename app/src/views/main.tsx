@@ -10,16 +10,22 @@ const Menu = styled.div`
 	height: 100%;
 `
 
+const NavContainer = styled.div`
+	display: block;
+	width: 125px;
+	margin: 2px;
+`
+
 const LinkContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 125px;
+	width: 100%;
 	height: 35px;
 	border: 1px solid black;
+	margin-bottom: 2px;
 	border-radius: 2px;
-	margin: 2px;
 	cursor: pointer;
 
 	&:hover {
@@ -40,7 +46,9 @@ const Nav = (props: LinkProps) => {
 
 export const Main = () => (
 	<Menu>
-		<Nav to="/admin">Admin</Nav>
-		<Nav to="/practice">Practice</Nav>
+		<NavContainer>
+			<Nav to="/admin">Admin</Nav>
+			<Nav to="/practice">Practice</Nav>
+		</NavContainer>
 	</Menu>
 )

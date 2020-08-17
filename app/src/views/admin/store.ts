@@ -7,6 +7,9 @@ export class Admin {
 	}
 
 	@observable
+	name: string = "Admin"
+
+	@observable
 	data: Card[] = []
 
 	@action

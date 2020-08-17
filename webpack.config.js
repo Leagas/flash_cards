@@ -6,7 +6,7 @@ const path = require("path")
 const isDevelopment = process.env.NODE_ENV === "dev"
 
 module.exports = {
-	mode: process.NODE_ENV == "dev" ? "development" : "production",
+	mode: isDevelopment ? "development" : "production",
 	target: "web",
 	entry: {
 		app: "./app/index.tsx",
