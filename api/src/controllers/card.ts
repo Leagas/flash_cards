@@ -46,3 +46,13 @@ export async function remove(id: number[]): Promise<boolean> {
 		return false
 	}
 }
+
+export async function topics() {
+	try {
+		return await card_dao.topics()
+	} catch (err) {
+		Log.error(`\n${err}\n`)
+
+		return false
+	}
+}

@@ -1,4 +1,4 @@
-import { Card } from "../models/card"
+import { Card, Topic } from "../models/card"
 import { database } from "../../../db"
 
 export async function create(card: Card): Promise<any> {
@@ -27,4 +27,10 @@ export async function remove(id: number[]): Promise<void> {
 	const params = [id]
 
 	return await database.query(query, params)
+}
+
+export async function topics(): Promise<Topic[]> {
+	const query = `SELECT id, topic FROM Topic`
+
+	return await database.query(query)
 }

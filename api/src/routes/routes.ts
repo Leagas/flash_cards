@@ -1,4 +1,4 @@
-import { Express, Response } from "express"
+import { Express, Response, Request } from "express"
 import path from "path"
 
 import { card_controller } from "../controllers"
@@ -51,6 +51,19 @@ export function init_routes(app: Express): void {
 
 			if (result) {
 				return res.sendStatus(200)
+			}
+
+			return res.sendStatus(400)
+		}
+	)
+
+	app.get(
+		"/card/topics",
+		async (_, res: Response): Promise<Response<any>> => {
+			const result = await card_controller.topics()
+
+			if (result) {
+				return res.send(result).status(200)
 			}
 
 			return res.sendStatus(400)

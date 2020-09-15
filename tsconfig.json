@@ -12,8 +12,9 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"allowSyntheticDefaultImports": true,
-		"removeComments": true
+		"removeComments": true,
+		"types": ["react"]
 	},
 	"include": ["api/**/*", "db/*", "./lib"],
-	"exclude": ["src/**/*.spec.ts"]
+	"exclude": ["src/**/*.spec.ts", "node_modules"]
 }

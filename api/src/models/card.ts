@@ -8,6 +8,11 @@ export type Card = {
 	known?: number
 }
 
+export type Topic = {
+	id: number
+	topic: string
+}
+
 export interface CardRequest<Body> extends Request {
 	body: Body
 }

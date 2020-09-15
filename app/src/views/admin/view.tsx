@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { observer } from "mobx-react"
 
 import { useStore } from "../../container"
+import { TField } from './model'
 
 const Container = styled.div`
 	display: flex;
@@ -13,7 +14,7 @@ const Container = styled.div`
 `
 
 const Form = styled.form`
-	max-width: 1000%;
+	max-width: 100%;
 	padding: 10px;
 `
 
@@ -39,6 +40,14 @@ const Button = styled.button`
 	width: 100%;
 `
 
+const ImageContainer = styled.div`
+	max-width: 250px;
+`
+
+const Image = styled.img`
+	width: 100%;
+`
+
 export const Admin = observer(() => {
 	const { admin } = useStore()
 
@@ -53,7 +62,7 @@ export const Admin = observer(() => {
 		<Container>
 			<Form>
 				<Input
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) => form.question.onChange(e.target.value)}
+					onChange={e => admin.handleChange<HTMLInputElement>(e, TField.question)}
 					value={form.question.value}
 					type="text"
 					id="question"
@@ -61,7 +70,7 @@ export const Admin = observer(() => {
 					placeholder="Question"
 				/>
 				<Input
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) => form.answer.onChange(e.target.value)}
+					onChange={e => admin.handleChange<HTMLInputElement>(e, TField.answer)}
 					value={form.answer.value}
 					type="text"
 					id="answer"
@@ -69,7 +78,7 @@ export const Admin = observer(() => {
 					placeholder="Answer"
 				/>
 				<Select
-					onChange={(e: React.ChangeEvent<HTMLSelectElement>) => form.topic.onChange(e.target.value)}
+					onChange={e => admin.handleChange<HTMLSelectElement>(e, TField.topic)}
 					value={form.topic.value}
 					id="topic"
 					name="topic"
@@ -77,14 +86,17 @@ export const Admin = observer(() => {
 				></Select>
 				<Label htmlFor="image">Choose a reference image:</Label>
 				<Input
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) => form.image.onChange(e.target.value)}
+					onChange={e => admin.handleChange<HTMLInputElement>(e, TField.image)}
 					value={form.image.value}
 					type="file"
 					id="image"
 					name="image"
 					accept="image/png, image/jpeg"
 				/>
-				<Button onClick={(e) => handleSubmit(e)}>Submit</Button>
+				<ImageContainer>
+					<Image src={admin.image} />
+				</ImageContainer>
+				<Button onClick={e => handleSubmit(e)}>Submit</Button>
 			</Form>
 		</Container>
 	)

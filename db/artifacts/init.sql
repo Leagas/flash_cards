@@ -30,4 +30,6 @@ CREATE TABLE Card (
   PRIMARY KEY (id)
 );
 
-INSERT INTO Topic (topic) VALUES ('Algebra');
+INSERT INTO Topic (topic) VALUES ('Linear Algebra');
+INSERT INTO Topic (topic) VALUES ('Precalculus');
+INSERT INTO Topic (topic) VALUES ('Physics');
