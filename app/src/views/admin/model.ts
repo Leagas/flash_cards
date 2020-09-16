@@ -10,8 +10,15 @@ export type Card = {
 export enum TField {
 	question = "question",
 	answer = "answer",
+	subject = "subject",
 	topic = "topic",
 	image = "image"
+}
+
+export type Topic = {
+	id: number,
+	subject: string
+	topic: string
 }
 
 export type TForm = FormState<{

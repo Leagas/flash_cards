@@ -2,6 +2,7 @@ import { Request } from "express"
 
 export type Card = {
 	id?: number
+	subject: string
 	topic: string
 	question: string
 	answer: string
@@ -10,6 +11,7 @@ export type Card = {
 
 export type Topic = {
 	id: number
+	subject: string
 	topic: string
 }
 

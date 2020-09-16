@@ -1,7 +1,8 @@
 import { observable, action } from "mobx"
 import { FormState, FieldState } from "formstate"
 
-import { TForm, TField } from "./model"
+import { TForm, TField, Topic } from "./model"
+import { services } from '../../services'
 
 export class Admin {
 	constructor() {
@@ -9,6 +10,7 @@ export class Admin {
 		this.form = new FormState({
 			question: new FieldState(""),
 			answer: new FieldState(""),
+			subject: new FieldState(""),
 			topic: new FieldState(""),
 			image: new FieldState(""),
 		})
@@ -21,11 +23,14 @@ export class Admin {
 	public image: string = ""
 
 	@observable
-	public topic: string[] = []
+	public subjects: string[] = []
+
+	@observable
+	public topics: Topic[] = []
 
 	@action
 	private init = () => {
-		// fetch topics
+		this.getTopics()
 	}
 
 	@action
@@ -47,6 +52,12 @@ export class Admin {
 		if (this.hasFile(event) && event.target.files) {
 			this.image = await this.handleFileAsBase64(event.target.files)
 		}
+	}
+
+	@action
+	private getTopics = async (): Promise<void> => {
+		this.topics = await services.fetchTopics();
+		this.subjects = [...new Set(this.topics.map(topic => topic.subject))]
 	}
 
 	private handleFileAsBase64 = (files: FileList): Promise<string> => {

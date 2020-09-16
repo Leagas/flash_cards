@@ -2,7 +2,7 @@ import { Express, Response, Request } from "express"
 import path from "path"
 
 import { card_controller } from "../controllers"
-import { CardRequest, Card } from "../models/card"
+import { CardRequest, Card, Topic } from "../models/card"
 
 export function init_routes(app: Express): void {
 	app.post(
@@ -59,7 +59,7 @@ export function init_routes(app: Express): void {
 
 	app.get(
 		"/card/topics",
-		async (_, res: Response): Promise<Response<any>> => {
+		async (_, res: Response): Promise<Response<Topic[]>> => {
 			const result = await card_controller.topics()
 
 			if (result) {

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { observer } from "mobx-react"
 
 import { useStore } from "../../container"
-import { TField } from './model'
+import { TField } from "./model"
 
 const Container = styled.div`
 	display: flex;
@@ -34,6 +34,15 @@ const Select = styled.select`
 	display: block;
 	width: 100%;
 	margin: 0 0 10px 0;
+	opacity: 0;
+
+	&.default {
+		color: grey;
+	}
+
+	&.show {
+		opacity: 1
+	}
 `
 
 const Button = styled.button`
@@ -62,7 +71,7 @@ export const Admin = observer(() => {
 		<Container>
 			<Form>
 				<Input
-					onChange={e => admin.handleChange<HTMLInputElement>(e, TField.question)}
+					onChange={(e) => admin.handleChange<HTMLInputElement>(e, TField.question)}
 					value={form.question.value}
 					type="text"
 					id="question"
@@ -70,7 +79,7 @@ export const Admin = observer(() => {
 					placeholder="Question"
 				/>
 				<Input
-					onChange={e => admin.handleChange<HTMLInputElement>(e, TField.answer)}
+					onChange={(e) => admin.handleChange<HTMLInputElement>(e, TField.answer)}
 					value={form.answer.value}
 					type="text"
 					id="answer"
@@ -78,15 +87,42 @@ export const Admin = observer(() => {
 					placeholder="Answer"
 				/>
 				<Select
-					onChange={e => admin.handleChange<HTMLSelectElement>(e, TField.topic)}
+					onChange={(e) => admin.handleChange<HTMLSelectElement>(e, TField.subject)}
+					value={form.subject.value}
+					id="subject"
+					name="subject"
+					placeholder="Select Subject"
+					className={`show ${form.subject.value == '' && `default`}`}
+				>
+					<option value={undefined} selected>Select Subject</option>
+					{admin.subjects.map((subject) => (
+						<option key={`subject-${subject}`} value={subject}>
+							{subject}
+						</option>
+					))}
+				</Select>
+				<Select
+					onChange={(e) => admin.handleChange<HTMLSelectElement>(e, TField.topic)}
 					value={form.topic.value}
 					id="topic"
 					name="topic"
 					placeholder="Select Topic"
-				></Select>
+					className={form.subject.value && "show"}
+				>
+					{admin.topics.reduce((topics, topic) => {
+						if (topic.subject === form.subject.value) {
+							topics.push(
+								<option key={`topic-${topic.id}-${topic.topic}`} value={topic.id} selected={topic.topic === "General"}>
+									{topic.topic}
+								</option>
+							)
+						}
+						return topics
+					}, [] as JSX.Element[])}
+				</Select>
 				<Label htmlFor="image">Choose a reference image:</Label>
 				<Input
-					onChange={e => admin.handleChange<HTMLInputElement>(e, TField.image)}
+					onChange={(e) => admin.handleChange<HTMLInputElement>(e, TField.image)}
 					value={form.image.value}
 					type="file"
 					id="image"
@@ -96,7 +132,7 @@ export const Admin = observer(() => {
 				<ImageContainer>
 					<Image src={admin.image} />
 				</ImageContainer>
-				<Button onClick={e => handleSubmit(e)}>Submit</Button>
+				<Button onClick={(e) => handleSubmit(e)}>Submit</Button>
 			</Form>
 		</Container>
 	)

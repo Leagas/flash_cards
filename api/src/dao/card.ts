@@ -30,7 +30,10 @@ export async function remove(id: number[]): Promise<void> {
 }
 
 export async function topics(): Promise<Topic[]> {
-	const query = `SELECT id, topic FROM Topic`
+	const query = `
+	SELECT t.id, s.name as subject, topic
+	FROM Topic t
+	JOIN Subject s ON t.subject=s.id`
 
 	return await database.query(query)
 }

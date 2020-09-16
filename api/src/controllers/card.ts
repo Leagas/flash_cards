@@ -1,4 +1,4 @@
-import { Card } from "../models/card"
+import { Card, Topic } from "../models/card"
 
 import { card_dao } from "../dao"
 import { Log } from "../../../lib/logger"
@@ -47,12 +47,10 @@ export async function remove(id: number[]): Promise<boolean> {
 	}
 }
 
-export async function topics() {
+export async function topics(): Promise<Topic[] | void> {
 	try {
 		return await card_dao.topics()
 	} catch (err) {
 		Log.error(`\n${err}\n`)
-
-		return false
 	}
 }
