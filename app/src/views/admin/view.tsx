@@ -45,6 +45,13 @@ const Select = styled.select`
 	}
 `
 
+const Status = styled.p`
+	font-size: 16px;
+	color: ${p => p.color};
+	text-align: center;
+	min-height: 20px;
+`
+
 const Button = styled.button`
 	width: 100%;
 `
@@ -93,8 +100,9 @@ export const Admin = observer(() => {
 					name="subject"
 					placeholder="Select Subject"
 					className={`show ${form.subject.value == '' && `default`}`}
+					defaultValue={undefined}
 				>
-					<option value={undefined} selected>Select Subject</option>
+					<option value={undefined}>Select Subject</option>
 					{admin.subjects.map((subject) => (
 						<option key={`subject-${subject}`} value={subject}>
 							{subject}
@@ -107,12 +115,14 @@ export const Admin = observer(() => {
 					id="topic"
 					name="topic"
 					placeholder="Select Topic"
-					className={form.subject.value && "show"}
+					className={`${form.subject.value && `show`} ${form.topic.value == '' && `default`}`}
+					defaultValue={undefined}
 				>
+					<option value={undefined}>Select Topic</option>
 					{admin.topics.reduce((topics, topic) => {
 						if (topic.subject === form.subject.value) {
 							topics.push(
-								<option key={`topic-${topic.id}-${topic.topic}`} value={topic.id} selected={topic.topic === "General"}>
+								<option key={`topic-${topic.id}-${topic.topic}`} value={topic.id}>
 									{topic.topic}
 								</option>
 							)
@@ -133,6 +143,7 @@ export const Admin = observer(() => {
 					<Image src={admin.image} />
 				</ImageContainer>
 				<Button onClick={(e) => handleSubmit(e)}>Submit</Button>
+				<Status color={admin.error ? "red" : "green"}>{admin.error || admin.status}</Status>
 			</Form>
 		</Container>
 	)

@@ -1,23 +1,30 @@
 import { observable, action } from "mobx"
 import { FormState, FieldState } from "formstate"
 
-import { TForm, TField, Topic } from "./model"
+import { TForm, TField, Topic, Card } from "./model"
 import { services } from '../../services'
+import { isRequired, minLength } from '../../library/validators'
 
 export class Admin {
 	constructor() {
 		this.init()
 		this.form = new FormState({
-			question: new FieldState(""),
-			answer: new FieldState(""),
-			subject: new FieldState(""),
-			topic: new FieldState(""),
+			question: new FieldState("").validators(isRequired, minLength),
+			answer: new FieldState("").validators(isRequired, minLength),
+			subject: new FieldState("").validators(isRequired),
+			topic: new FieldState("").validators(isRequired),
 			image: new FieldState(""),
 		})
 	}
 
 	@observable
 	public form: TForm
+
+	@observable
+	public error: string = ""
+
+	@observable
+	public status: string = ""
 
 	@observable
 	public image: string = ""
@@ -29,16 +36,22 @@ export class Admin {
 	public topics: Topic[] = []
 
 	@action
-	private init = () => {
+	private init = (): void => {
 		this.getTopics()
 	}
 
 	@action
-	public submit = () => {
-		console.log(this.form.$.question.value)
-		console.log(this.form.$.answer.value)
-		console.log(this.image)
-		console.log(this.form.$.topic.value)
+	public submit = async (): Promise<void> => {
+		try {
+			const payload = await this.getPayload()
+
+			await services.createCard(payload)
+
+			this.handleStatus("Card Created!")
+			this.resetForm();
+		} catch (err) {
+			this.handleError(err|| "Failed to validate payload")
+		}
 	}
 
 	@action
@@ -56,8 +69,59 @@ export class Admin {
 
 	@action
 	private getTopics = async (): Promise<void> => {
-		this.topics = await services.fetchTopics();
-		this.subjects = [...new Set(this.topics.map(topic => topic.subject))]
+		try {
+			this.topics = await services.fetchTopics();
+			this.subjects = [...new Set(this.topics.map(topic => topic.subject))]
+		} catch (err) {
+			this.handleError("Failed to fetch topics")
+		}
+	}
+
+	@action
+	private handleError = (error: string): void => {
+		this.error = error
+	}
+
+	@action
+	private handleStatus = (status: string): void => {
+		this.status = status
+	}
+
+	@action
+	private resetForm = (): void => {
+		this.form.$.question.value = ""
+		this.form.$.answer.value = ""
+		this.form.$.image.value = ""
+		this.image = ""
+	}
+
+	private getPayload = async (): Promise<Card | never> => {
+		const result = await this.form.validate()
+
+		if (result.hasError) {
+			throw "Please fill in required fields"
+		}
+
+		this.handleError("")
+
+		const {
+			question,
+			answer,
+			topic,
+			image
+		} = this.form.$
+
+		let payload: Card = {
+			question: question.value,
+			answer: answer.value,
+			topic: topic.value,
+		}
+
+		if (image.value) {
+			payload.image = this.image
+		}
+
+		return payload
 	}
 
 	private handleFileAsBase64 = (files: FileList): Promise<string> => {

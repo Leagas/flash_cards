@@ -11,7 +11,7 @@ export function init_routes(app: Express): void {
 			const result = await card_controller.create(req.body)
 
 			if (result) {
-				return res.sendStatus(200)
+				return res.send(result).status(200)
 			}
 
 			return res.sendStatus(400)
@@ -37,7 +37,7 @@ export function init_routes(app: Express): void {
 			const result = await card_controller.update(req.body)
 
 			if (result) {
-				return res.sendStatus(200)
+				return res.send(result).status(200)
 			}
 
 			return res.sendStatus(400)
@@ -50,7 +50,7 @@ export function init_routes(app: Express): void {
 			const result = await card_controller.remove(req.body)
 
 			if (result) {
-				return res.sendStatus(200)
+				return res.send(result).status(200)
 			}
 
 			return res.sendStatus(400)

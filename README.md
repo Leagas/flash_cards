@@ -22,8 +22,6 @@ Inspired by https://github.com/jwasham/coding-interview-university
 
 # todo
 
-Add sub-topic optional values
-Add submit function to services for adding a card
 Add a duplicate check e.g. rowhash column for cards
 
 Think of some sort of random sort prio. e.g SET last selected/least known

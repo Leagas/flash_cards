@@ -1,9 +1,12 @@
 import { Card, Topic } from "../models/card"
 import { database } from "../../../db"
 
+const getProperty = <T, K extends keyof T>(obj: T, key: K): T[K] => obj[key]
+
 export async function create(card: Card): Promise<any> {
-	const query = `INSERT INTO Card (topic, question, answer) VALUES (?, ?, ?)`
-	const params = [card.topic, card.question, card.answer]
+	const fields: any[] = Object.keys(card)
+	const query = `INSERT INTO Card (${fields}) VALUES (${fields.map((_) => `?`)})`
+	const params = fields.map((field) => getProperty<Card, keyof Card>(card, field))
 
 	return await database.query(query, params)
 }

@@ -1,10 +1,11 @@
 import { FormState, FieldState } from "formstate"
 
 export type Card = {
-	id: number
+	id?: number
 	topic: string
 	question: string
 	answer: string
+	image?: string
 }
 
 export enum TField {
