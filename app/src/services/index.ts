@@ -3,5 +3,6 @@ import { asyncRequest } from './fetch';
 
 export const services = {
 	fetchTopics: async (): Promise<Topic[]> => await asyncRequest("card/topics"),
-	createCard: async (payload: Card): Promise<string> => await asyncRequest("card/create", payload, "POST")
+	createCard: async (payload: Card): Promise<string> => await asyncRequest("card/create", payload, "POST"),
+	updateCard: async (payload: Card): Promise<string> => await asyncRequest("card/update", payload, "POST")
 }

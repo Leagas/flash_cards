@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { observer } from "mobx-react"
+import { useParams } from 'react-router-dom';
 
 import { useStore } from "../../container"
 import { TField } from "./model"
@@ -64,12 +65,22 @@ const Image = styled.img`
 	width: 100%;
 `
 
+type Params = {
+	id?: string
+}
+
 export const Admin = observer(() => {
 	const { admin } = useStore()
+	const { id } = useParams<Params>()
 
 	const handleSubmit = (e: React.MouseEvent) => {
 		e.preventDefault()
-		admin.submit()
+
+		if (id) {
+			admin.update(id)
+		} else {
+			admin.create()
+		}
 	}
 
 	const form = admin.form.$
@@ -77,6 +88,18 @@ export const Admin = observer(() => {
 	return (
 		<Container>
 			<Form>
+				{
+					id && (
+						<Input
+							disabled
+							value={id}
+							type="text"
+							id="id"
+							name="id"
+							placeholder="id"
+						/>
+					)
+				}
 				<Input
 					onChange={(e) => admin.handleChange<HTMLInputElement>(e, TField.question)}
 					value={form.question.value}

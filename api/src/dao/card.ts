@@ -7,7 +7,6 @@ export async function create(card: Card): Promise<any> {
 	const fields: any[] = Object.keys(card)
 	const query = `INSERT INTO Card (${fields}) VALUES (${fields.map((_) => `?`)})`
 	const params = fields.map((field) => getProperty<Card, keyof Card>(card, field))
-
 	return await database.query(query, params)
 }
 
@@ -19,9 +18,9 @@ export async function fetch(topic: string[]): Promise<Card[] | void> {
 }
 
 export async function update(card: Card): Promise<any> {
-	const query = `UPDATE Card SET topic=?, question=?, answer=?, known=? WHERE id=?`
-	const params = [card.topic, card.question, card.answer, card.known, card.id]
-
+	const fields: any[] = Object.keys(card).filter(field => field !== "id")
+	const query = `UPDATE Card SET${fields.map(field => ` ${field}=?`)} WHERE id=?`
+	const params = [...fields.map((field) => getProperty<Card, keyof Card>(card, field)), card.id]
 	return await database.query(query, params)
 }
 

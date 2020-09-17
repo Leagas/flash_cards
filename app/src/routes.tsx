@@ -12,6 +12,7 @@ export const Routes = () => {
 				<Route exact path="/" component={Main} />
 				<Route exact path="/practice" component={Practice} />
 				<Route exact path="/admin" component={Admin} />
+				<Route exact path="/admin/:id" component={Admin} />
 			</Switch>
 		</Router>
 	)

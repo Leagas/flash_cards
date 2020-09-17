@@ -1,7 +1,7 @@
 import { FormState, FieldState } from "formstate"
 
 export type Card = {
-	id?: number
+	id?: string
 	topic: string
 	question: string
 	answer: string
@@ -9,6 +9,7 @@ export type Card = {
 }
 
 export enum TField {
+	id = "id",
 	question = "question",
 	answer = "answer",
 	subject = "subject",
@@ -17,7 +18,7 @@ export enum TField {
 }
 
 export type Topic = {
-	id: number,
+	id: string,
 	subject: string
 	topic: string
 }

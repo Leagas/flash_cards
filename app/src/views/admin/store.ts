@@ -9,6 +9,7 @@ export class Admin {
 	constructor() {
 		this.init()
 		this.form = new FormState({
+			id: new FieldState(""),
 			question: new FieldState("").validators(isRequired, minLength),
 			answer: new FieldState("").validators(isRequired, minLength),
 			subject: new FieldState("").validators(isRequired),
@@ -41,13 +42,27 @@ export class Admin {
 	}
 
 	@action
-	public submit = async (): Promise<void> => {
+	public create = async (): Promise<void> => {
 		try {
 			const payload = await this.getPayload()
 
 			await services.createCard(payload)
 
 			this.handleStatus("Card Created!")
+			this.resetForm();
+		} catch (err) {
+			this.handleError(err|| "Failed to validate payload")
+		}
+	}
+
+	@action
+	public update = async (id: string): Promise<void> => {
+		try {
+			const payload = await this.getPayload(id)
+
+			await services.updateCard(payload)
+
+			this.handleStatus("Card Updated!")
 			this.resetForm();
 		} catch (err) {
 			this.handleError(err|| "Failed to validate payload")
@@ -95,7 +110,7 @@ export class Admin {
 		this.image = ""
 	}
 
-	private getPayload = async (): Promise<Card | never> => {
+	private getPayload = async (id?: string): Promise<Card | never> => {
 		const result = await this.form.validate()
 
 		if (result.hasError) {
@@ -115,6 +130,10 @@ export class Admin {
 			question: question.value,
 			answer: answer.value,
 			topic: topic.value,
+		}
+
+		if (id) {
+			payload.id = id
 		}
 
 		if (image.value) {
