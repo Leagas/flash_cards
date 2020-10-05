@@ -22,6 +22,7 @@ Inspired by https://github.com/jwasham/coding-interview-university
 
 # todo
 
-Add a duplicate check e.g. rowhash column for cards
+Setup build/deploy infra etc.
 
+Add a duplicate check e.g. rowhash column for cards
 Think of some sort of random sort prio. e.g SET last selected/least known
