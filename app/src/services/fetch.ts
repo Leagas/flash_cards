@@ -26,13 +26,13 @@ export const asyncRequest = async (
 
 	const response = await fetch(`http://localhost:3000/${url}`, config)
 
-	if (!response.ok) {
-		throw Error(response.statusText)
+	if (!response.ok) {		
+		throw response.statusText
 	}
 
 	try {
 		return await response.json()
 	} catch (err) {
-		throw Error(err)
+		throw err
 	}
 }

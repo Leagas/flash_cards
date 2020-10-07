@@ -50,7 +50,7 @@ export class Admin {
 
 			this.handleStatus("Card Created!")
 			this.resetForm();
-		} catch (err) {
+		} catch (err) {			
 			this.handleError(err|| "Failed to validate payload")
 		}
 	}
@@ -93,7 +93,7 @@ export class Admin {
 	}
 
 	@action
-	private handleError = (error: string): void => {
+	private handleError = (error: string): void => {		
 		this.error = error
 	}
 

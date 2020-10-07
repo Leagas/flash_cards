@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const webpack = require("webpack")
 const path = require("path")
 
-const isDevelopment = process.env.NODE_ENV === "dev"
+const isDevelopment = process.env.NODE_ENV === "set NODE_ENV=production"
 
 module.exports = {
 	mode: isDevelopment ? "development" : "production",
@@ -77,7 +77,10 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new HtmlWebpackPlugin({ template: "./app/index.html" }),
+		new HtmlWebpackPlugin({ 
+			template: "./app/index.html",
+			filename: "index.html"
+		}),
 		new MiniCssExtractPlugin({
 			filename: "[name].css",
 			chunkFilename: "[id].css",
