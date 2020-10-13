@@ -161,6 +161,7 @@ export const Admin = observer(() => {
 					id="image"
 					name="image"
 					accept="image/png, image/jpeg"
+					required={true}
 				/>
 				<ImageContainer>
 					<Image src={admin.image} />
