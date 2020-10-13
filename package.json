@@ -13,7 +13,7 @@
 		"build:server": "tsc --build tsconfig.json",
 		"build:client": "npx webpack --config webpack.config.js",
 		"watch:server": "tsc --build tsconfig.json --watch",
-		"watch:client": "npx webpack --config \"webpack.config.js\" --watch",
+		"watch:client": "set NODE_ENV=development&& npx webpack --config \"webpack.config.js\" --watch",
 		"clean": "rm -rf dist",
 		"build": "npm run build:server && npm run build:client",
 		"start:local": "npm run db:start && node dist/api/index.js",

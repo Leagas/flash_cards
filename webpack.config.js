@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const webpack = require("webpack")
 const path = require("path")
 
-const isDevelopment = process.env.NODE_ENV === "set NODE_ENV=production"
+const isDevelopment = process.env.NODE_ENV === "development"
 
 module.exports = {
 	mode: isDevelopment ? "development" : "production",
