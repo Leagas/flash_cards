@@ -3,10 +3,10 @@ import path from "path"
 
 export const db: ConnectionConfig = {
 	multipleStatements: true,
-	host: "127.0.0.1",
+	host: "192.168.0.50",
 	user: "root",
 	password: "root",
-	port: 3310,
+	port: 3306,
 }
 
 // path relative from dist

@@ -23,6 +23,8 @@ Inspired by https://github.com/jwasham/coding-interview-university
 # todo
 
 Setup build/deploy infra etc.
+	-	reverse proxy to home (ssh tunnel) using AWS
+	-	move all to AWS cloud
 
 Add a duplicate check e.g. rowhash column for cards
 Think of some sort of random sort prio. e.g SET last selected/least known

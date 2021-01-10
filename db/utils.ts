@@ -6,7 +6,7 @@ import { Log } from '../lib/logger'
 
 function wait(waitTime: number) {
 	return new Promise((resolve) => {
-		setTimeout(() => resolve(), waitTime)
+		setTimeout(() => resolve(true), waitTime)
 	})
 }
 
@@ -21,7 +21,7 @@ export async function pingUntilReady(connection: Connection, limit: number = 25)
 						return reject(err)
 					}
 					process.stdout.write("\n")
-					return resolve()
+					return resolve(true)
 				})
 			})
 			return true

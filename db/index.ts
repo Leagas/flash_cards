@@ -31,7 +31,7 @@ function query<Result = any[]>(schema: string, params: string[] = [], pool: Pool
 	})
 }
 
-export const database: Database = {} as  Database
+export const database: Database = {} as Database
 
 export async function init_db() {
 	database.connection_pool = create_pool(db);

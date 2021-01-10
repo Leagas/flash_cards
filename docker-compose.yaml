@@ -5,16 +5,34 @@ services:
     image: mysql:5.7
     restart: always
     networks:
-      - network-default
+        flash_cards:
+          ipv4_address: "192.168.0.50"
     environment:
       MYSQL_ROOT_PASSWORD: "root"
     ports:
       - "3310:3306"
     volumes:
       - my-db:/var/lib/mysql
+  api:
+    container_name: card_api
+    restart: always
+    image: "node:12"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "3000:3000"
+    networks:
+        flash_cards:
+          ipv4_address: "192.168.0.51"
+    command: "npm start"
 volumes:
   my-db:
 
 networks:
-  network-default:
+  flash_cards:
     name: flash_cards
+    external: true
