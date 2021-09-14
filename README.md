@@ -10,7 +10,7 @@ Inspired by https://github.com/jwasham/coding-interview-university
 
 	Various commands to control the stop, start, create, and destroy of the docker network.
 
-	- db:setup/setup, this is for the first time setup of the docker image and SQL database tables. Warning this will delete any existing data.
+	- db:setup/setup, this is for the first time setup of the docker image and SQL database tables.
 
 ## build:*
 
